@@ -1,0 +1,50 @@
+package com.wellsfargo.counselor.entity;
+
+import jakarta.persistence.*;
+
+@Entity
+public class Security {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+    private String category;
+    private Double purchasePrice;
+    private Integer quantity;
+
+    @ManyToOne
+    @JoinColumn(name = "portfolio_id")
+    private Portfolio portfolio;
+
+    public Security() {}
+
+    public Security(Long id, String name, String category,
+                    Double purchasePrice, Integer quantity,
+                    Portfolio portfolio) {
+        this.id = id;
+        this.name = name;
+        this.category = category;
+        this.purchasePrice = purchasePrice;
+        this.quantity = quantity;
+        this.portfolio = portfolio;
+    }
+
+    public Long getId() { return id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
+
+    public Double getPurchasePrice() { return purchasePrice; }
+    public void setPurchasePrice(Double purchasePrice) { this.purchasePrice = purchasePrice; }
+
+    public Integer getQuantity() { return quantity; }
+    public void setQuantity(Integer quantity) { this.quantity = quantity; }
+
+    public Portfolio getPortfolio() { return portfolio; }
+    public void setPortfolio(Portfolio portfolio) { this.portfolio = portfolio; }
+}
